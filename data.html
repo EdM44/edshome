@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Ed Maurer - Data</title>
+
+<script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+<link rel="favicon" href="images/icons/favicon.ico" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Ed Maurer</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="pubs.html">Publications</a>
+</li>
+<li>
+  <a href="resources.html">Resources</a>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="links.html">Links</a>
+</li>
+<li>
+  <a href="creek.html">Creek Cleanup</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:emaurer@scu.edu">
+    <span class="fa fa-envelope-o"></span>
+     
+    
+  </a>
+</li>
+<li>
+  <a href="https://github.com/EdM44">
+    <span class="fa fa-github"></span>
+     
+    
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<p><br></p>
+<p>The data linked here consist of downscaled projections of climate
+model output produced as part of CMIP3, CMIP5, and CMIP6, and gridded
+observed data that can be used in downscaling. These are not close to
+being exhaustive lists.</p>
+<div id="global-data" class="section level3">
+<h3>Global Data</h3>
+<div id="gridded-observations" class="section level4">
+<h4>Gridded observations</h4>
+<ul>
+<li><a href="https://www.chc.ucsb.edu/data/chirps3">CHIRPS</a>
+(precipitation only)</li>
+<li><a
+href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels">ERA5</a></li>
+</ul>
+</div>
+<div id="climate-projections---all-statistically-downscaled"
+class="section level4">
+<h4>Climate projections - all statistically downscaled</h4>
+<ul>
+<li><a href="https://www.nasa.gov/nex">NASA-NEX</a> - daily data
+available through <a
+href="https://www.nccs.nasa.gov/services/climate-data-services">NASA’s
+Climate Data Services site</a>. 0.25 degree spatial resolution
+precipitation, temperature and other variables.</li>
+<li><a
+href="https://planetarycomputer.microsoft.com/dataset/group/cil-gdpcir">CIL</a>
+- daily data at 0.25 degree spatial resolution precipitation and
+temperature.</li>
+<li><a href="https://www.worldclim.org/data">Worldclim</a> - monthly
+data for precipitation, temperature, and derived bioclimatic variables
+at spatial scales from 1/6 degree to about 1 km.</li>
+</ul>
+</div>
+</div>
+<div id="u.s.-and-north-america-data" class="section level3">
+<h3>U.S. (and North America) data</h3>
+<div id="gridded-observations-1" class="section level4">
+<h4>Gridded observations</h4>
+<ul>
+<li><a href="https://ciresgroups.colorado.edu/livneh/data">Livneh</a> -
+1/16 degree daily gridded precipitation and temperature data, documented
+in <a
+href="https://journals.ametsoc.org/view/journals/clim/26/23/jcli-d-12-00508.1.xml">Livneh
+et al., 2013</a>.</li>
+<li><a href="http://cirrus.ucsd.edu/~pierce/nonsplit_precip/">adjusted
+Livneh</a> - avoided splitting precipitation across days to represent
+extreme precipitation better, as described by <a
+href="https://journals.ametsoc.org/view/journals/hydr/22/7/JHM-D-20-0212.1.xml">Pierce
+et al., 2021</a></li>
+<li><a href="https://daymet.ornl.gov/">Daymet</a> - includes
+precipitation and temperature at 1 km resolution.</li>
+<li><a href="https://prism.oregonstate.edu/">PRISM</a> - daily and
+monthly time series and climatological precipitation and temperature at
+spatial resolutions of 4 km to 800 m.</li>
+</ul>
+</div>
+<div id="climate-projections" class="section level4">
+<h4>Climate Projections</h4>
+<ul>
+<li><a
+href="https://gdo-dcp.ucllnl.org/downscaled_cmip_projections/">USBR-GDO</a>
+serves U.S. based precipitation and temperature data from multiple
+climate experiments (CMIP3, CMIP5, and eventually CMIP6) statistically
+downscaled to spatial resolutions from 1/8 to 1/16 degree. This archive
+is hosted by the <a
+href="https://hpc.llnl.gov/services/green-data-oasis">Green Data
+Oasis</a>.</li>
+<li><a
+href="https://loca.ucsd.edu/loca-version-2-for-north-america-ca-jan-2023/">LOCA2</a>
+- downscaled precipitation, temperature and other data at a 1/16 degree
+spatial resolution.</li>
+</ul>
+</div>
+<div id="runoff-and-streamflow-projections" class="section level4">
+<h4>Runoff and streamflow projections</h4>
+<ul>
+<li><a
+href="https://www.usbr.gov/watersmart/baseline/index.html">WaterSmart</a>
+- described in <a
+href="http://pubs.usgs.gov/circ/1331/Circ1331.pdf">documentation
+developed with the USGS</a>. Much of this data for the U.S. is also
+served by the <a href="http://cida.usgs.gov/gdp/">USGS Geo Data
+Portal</a></li>
+</ul>
+</div>
+</div>
+<div id="california-data" class="section level3">
+<h3>California data</h3>
+<div id="gridded-observations-and-projections" class="section level4">
+<h4>Gridded observations and projections</h4>
+<ul>
+<li><a href="https://cal-adapt.org/data/">CalAdapt</a> - Serves CMIP5
+projections of precipitation, temperature, runoff, and other variables,
+and is accumulating some CMIP6 projections. Has statistically and
+dynamically downscaled data.</li>
+</ul>
+</div>
+</div>
+<div id="r-packages-for-convenient-access-to-some-of-the-data"
+class="section level3">
+<h3>R packages for convenient access to some of the data</h3>
+<ul>
+<li><a href="https://CRAN.R-project.org/package=ecmwfr">ecmwfr</a> -
+accesses ERA5 and many other <a
+href="https://cds.climate.copernicus.eu/datasets">ECMWF</a>
+datasets</li>
+<li><a href="https://cran.r-project.org/package=geodata">geodata</a> -
+provides access to Worldclim data</li>
+<li><a href="https://CRAN.R-project.org/package=daymetr">daymetr</a> -
+for Daymet data</li>
+<li><a href="https://CRAN.R-project.org/package=prism">prism</a> - for
+PRISM data</li>
+<li><a
+href="https://ucanr-igis.github.io/caladaptr/index.html">caladaptr</a> -
+may work with older CalAdapt data, but has not been updated in
+years.</li>
+<li><a href="https://github.com/imohamme/NASAaccess/">NASAaccess</a> -
+can access NASA-NEX downscaled data as described in the <a
+href="https://imohamme.github.io/NASAaccess">vignette</a></li>
+</ul>
+</div>
+
+&nbsp;
+<hr />
+<!-- Add icon library -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Add font awesome icons -->
+<p style="text-align: center;">Prepared with <a href="https://cran.r-project.org/" i class="fab fa-r-project"></i></a>
+</p>
+
+&nbsp;
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "site_libs/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
